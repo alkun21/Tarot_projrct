@@ -1,0 +1,456 @@
+:root {
+  --primary: #9c27b0;
+  --secondary: #673ab7;
+  --accent: #e040fb;
+  --dark: #1a1a2e;
+  --darker: #121221;
+  --text-light: #f8f9fa;
+  --card-bg: #16213e;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: var(--dark);
+  color: var(--text-light);
+  min-height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+}
+
+/* Header */
+header {
+  background-color: rgba(26, 26, 46, 0.7);
+  backdrop-filter: blur(10px);
+  padding: 20px 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logo i {
+  margin-right: 10px;
+}
+
+.menu {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+}
+
+.menu a {
+  color: var(--text-light);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+  font-size: 1.1rem;
+}
+
+.menu a:hover {
+  color: var(--accent);
+}
+
+.btn {
+  padding: 10px 25px;
+  border-radius: 50px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: inline-block;
+  border: none;
+  font-size: 1rem;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Main Content */
+.auth-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 100px 0;
+  position: relative;
+  background-color: var(--darker);
+}
+
+.mystical-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 50%, #321d2d, var(--darker));
+  z-index: 0;
+  overflow: hidden;
+}
+
+.stars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background-color: #fff;
+  border-radius: 50%;
+  animation: twinkle 5s infinite;
+}
+
+@keyframes twinkle {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.auth-container {
+  display: flex;
+  width: 900px;
+  max-width: 95%;
+  background-color: rgba(22, 33, 62, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  position: relative;
+  z-index: 10;
+}
+
+.auth-image {
+  flex: 1;
+  background: url('https://via.placeholder.com/400x600') center center/cover;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  position: relative;
+}
+
+.auth-image::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg,
+      rgba(156, 39, 176, 0.6),
+      rgba(103, 58, 183, 0.6));
+}
+
+.image-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  margin-top: 200px; /* отступ вниз, чтобы текст не перекрывал шар */
+}
+
+.image-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: var(--text-light);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.image-content p {
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.crystal-ball {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%,
+      rgba(255, 255, 255, 0.8),
+      rgba(161, 140, 209, 0.5),
+      rgba(102, 51, 153, 0.8));
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2),
+    inset 0 0 20px rgba(255, 255, 255, 0.3),
+    inset 0 0 40px rgba(255, 255, 255, 0.2);
+  margin: 0 auto 30px;
+  position: absolute;
+  top: 50px; /* надо поменять для теста почекать */
+  left: 50%;
+  transform: translateX(-50%);
+  animation: glow 2s infinite alternate; /* добавил */
+  z-index: 3;
+}
+
+.crystal-ball::after {
+  content: "";
+  position: absolute;
+  top: 15%;
+  left: 20%;
+  width: 20%;
+  height: 20%;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.auth-forms {
+  flex: 1;
+  padding: 40px;
+  position: relative;
+}
+
+.tabs {
+  display: flex;
+  margin-bottom: 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  margin-top: 20px;
+}
+
+.tab {
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s;
+  margin-top: 10px;
+}
+
+.tab.active {
+  color: var(--accent);
+}
+
+.tab.active::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--accent);
+  border-radius: 10px 10px 0 0;
+}
+
+.form-container {
+  display: none;
+}
+
+.form-container.active {
+  display: block;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.form-input {
+  width: 100%;
+  padding: 15px;
+  background-color: rgba(26, 26, 46, 0.7);
+  border: 1px solid rgba(156, 39, 176, 0.5);
+  color: var(--text-light);
+  border-radius: 10px;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s;
+}
+
+.form-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(224, 64, 251, 0.3);
+}
+
+.forgot-password {
+  display: block;
+  text-align: right;
+  margin-top: 8px;
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+
+.forgot-password:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 15px;
+}
+
+.submit-btn:hover {
+  background-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.tarot-card {
+  position: absolute;
+  width: 80px;
+  height: 140px;
+  background-color: var(--card-bg);
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  z-index: -1;
+  transition: all 0.8s ease-in-out;
+}
+
+.tarot-card-1 {
+  top: 50px;
+  left: -40px;
+  transform: rotate(-15deg);
+  background: linear-gradient(135deg, #321d2d, #4a2639);
+  border: 2px solid rgba(224, 64, 251, 0.3);
+}
+
+.tarot-card-2 {
+  bottom: 50px;
+  right: -40px;
+  transform: rotate(15deg);
+  background: linear-gradient(135deg, #442d5c, #2c1e3d);
+  border: 2px solid rgba(103, 58, 183, 0.3);
+}
+
+.main {
+  padding: 0px;
+  margin: 0;
+} 
+
+.auth-container:hover .tarot-card-1 {
+  transform: translateX(10px) rotate(-5deg);
+}
+
+.auth-container:hover .tarot-card-2 {
+  transform: translateX(-10px) rotate(5deg);
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 10px rgba(224, 64, 251, 0.5);
+  }
+
+  to {
+    box-shadow: 0 0 20px rgba(224, 64, 251, 0.8),
+      0 0 30px rgba(224, 64, 251, 0.6);
+  }
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .auth-container {
+    flex-direction: column;
+    width: 600px;
+  }
+
+  .auth-image {
+    padding: 30px;
+  }
+
+  .image-content h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .auth-container {
+    width: 90%;
+  }
+
+  .tabs {
+    justify-content: center;
+  }
+
+  .tab {
+    padding: 15px 20px;
+  }
+
+  .tab.active:nth-child(2)~.form-container .crystal-ball {
+    transform: translateY(-30px);
+  }
+}
+
+@media (max-width: 576px) {
+  .auth-forms {
+    padding: 30px 20px;
+  }
+
+  .auth-image {
+    padding: 30px 20px;
+  }
+
+  .image-content h2 {
+    font-size: 1.8rem;
+  }
+}

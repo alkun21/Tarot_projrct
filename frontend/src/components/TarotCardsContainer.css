@@ -1,0 +1,415 @@
+/* frontend/src/components/TarotCardsContainer.css */
+.tarot-cards-container {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  padding-top: 60px;
+  padding-bottom: 100px;
+  background: linear-gradient(to bottom, #1a1a2e, #16213e);
+  font-family: 'Playfair Display', serif;
+  color: #f0f0f0;
+}
+
+.cards-selection-title {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #f0f0f0;
+  z-index: 10;
+  bottom: 100px;
+}
+
+.cards-selection-title h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+  text-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
+}
+
+.cards-selection-title p {
+  font-size: 1.1rem;
+  max-width: 600px;
+  opacity: 0.9;
+}
+
+/* Improved fan layout container */
+.cards-fan {
+  position: relative;
+  width: 100%;
+  /* height: 550px;  */
+  perspective: 1200px; 
+  margin-bottom: 40px; 
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  transform-style: preserve-3d;
+  padding-top: 150px;
+} 
+
+/* Enhanced tarot card styling */
+.tarot-card {
+  width: 120px;
+  height: 200px;
+  cursor: pointer;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  animation: fadeIn 0.6s forwards;
+  opacity: 0;
+  position: absolute;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  /* Reset any top positioning that might be set elsewhere */
+  top: auto;
+  bottom: auto;
+  /* Ensure cards are positioned relative to center */
+  transform-origin: center center; 
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Purple glowing outline for cards */
+.tarot-card::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #7b2cbf, #5a189a);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.tarot-card:hover::after {
+  opacity: 1;
+}
+
+/* Card back design with mystical pattern */
+.card-back {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(145deg, #32275a, #251b43);
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-back-design {
+  width: 100%;
+  height: 100%;
+  background-image: url('/build/images/IMG_1063.WEBP'), 
+                    radial-gradient(circle at center, rgba(157, 78, 221, 0.3), transparent);
+  background-size: cover;
+  background-position: center;
+  opacity: 0.85;
+  border-radius: 10px;
+}
+
+.card-back-design::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.1) 10px,
+    rgba(158, 79, 222, 0.1) 10px,
+    rgba(158, 79, 222, 0.1) 20px
+  );
+}
+
+.card-image {
+  width: 100%;
+  height: 85%;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.card-name {
+  height: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #ffd700;
+  font-size: 0.8rem;
+  text-align: center;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+/* Enhanced fade-in animation - updated to prevent upward movement */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Number indicator for selected cards */
+.selection-number {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(135deg, #ffd700, #ff9900);
+  color: #1a1a2e;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  box-shadow: 0 2px 10px rgba(255, 215, 0, 0.5);
+  z-index: 10;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7);
+  }
+  70% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 10px rgba(255, 215, 0, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 215, 0, 0);
+  }
+}
+
+/* Controls section at the bottom */
+.cards-controls {
+  position: fixed;
+  bottom: 40px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 100;
+  background: linear-gradient(to top, rgba(26, 26, 46, 0.9), rgba(26, 26, 46, 0));
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
+
+.selected-cards-info {
+  margin-bottom: 20px;
+  color: #fff;
+  font-size: 1.2rem;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.reading-detail-indicator {
+  font-size: 1rem;
+  color: #ffd700;
+  margin-top: 8px;
+}
+
+/* Improved button styling */
+.interpret-btn {
+  padding: 14px 35px;
+  background-color: #555;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  cursor: not-allowed;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.interpret-btn.active {
+  background: linear-gradient(135deg, #7b2cbf, #3c096c);
+  border: 1px solid #ffd700;
+  opacity: 1;
+  cursor: pointer;
+  animation: glow 1.5s infinite alternate;
+}
+
+.interpret-btn:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(107, 44, 145, 0.5);
+}
+
+.interpret-btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+  }
+  to {
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 30px rgba(255, 153, 0, 0.5);
+  }
+}
+
+/* Loading animation */
+.loading-cards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+}
+
+.spinner {
+  width: 70px;
+  height: 70px;
+  border: 6px solid rgba(157, 78, 221, 0.3);
+  border-radius: 50%;
+  border-top-color: #9d4edd;
+  animation: spin 1.2s ease-in-out infinite;
+  margin-bottom: 30px;
+  box-shadow: 0 0 20px rgba(157, 78, 221, 0.5);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-cards p {
+  color: #f0f0f0;
+  font-size: 1.3rem;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+/* Selected cards display styles */
+.selected-cards-section {
+  position: relative;
+  z-index: 2;
+  margin-top: 30px;
+  margin-bottom: 120px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.selected-cards {
+  padding: 30px;
+  background: rgba(26, 26, 46, 0.8);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 
+              inset 0 0 20px rgba(157, 78, 221, 0.3);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(157, 78, 221, 0.3);
+}
+
+.selected-title {
+  color: #ffd700;
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+  text-align: center;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+.selected-cards-container {
+  display: flex;
+  justify-content: center;
+  gap: 35px;
+  flex-wrap: wrap;
+}
+
+.card-slot {
+  width: 140px;
+  height: 230px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: rgba(38, 38, 58, 0.8);
+  border: 1px solid rgba(157, 78, 221, 0.4);
+}
+
+.card-slot:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(157, 78, 221, 0.4);
+}
+
+.selected-card {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.selected-card-image {
+  width: 100%;
+  height: 80%;
+  object-fit: contain;
+  background: rgba(25, 25, 35, 0.8);
+}
+
+.selected-card-name {
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  color: #ffd700;
+  font-size: 0.9rem;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(25, 25, 35, 0.9);
+}
+
+.empty-slot {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, rgba(38, 38, 58, 0.8), rgba(25, 25, 35, 0.8));
+  color: #999;
+}
+
+.slot-number {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: rgba(157, 78, 221, 0.7);
+  text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+.slot-text {
+  font-size: 1rem;
+  color: #aaa;
+  text-align: center;
+  padding: 0 10px;
+}
