@@ -4,7 +4,7 @@
 
 ## Участники проекта
 Yo4mura:https://github.com/Yo4mura
-hizaweeeq:https://github.com/h1zaweeeq
+
 
 # Getting Started with Create React App
 
